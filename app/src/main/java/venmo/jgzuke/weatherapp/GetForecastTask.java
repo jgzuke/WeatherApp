@@ -1,7 +1,9 @@
 package venmo.jgzuke.weatherapp;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,7 +21,7 @@ import java.util.ArrayList;
 public class GetForecastTask extends AsyncTask<String, Void, ArrayList<ForecastInfo>>
 {
     private static final String API_KEY = "7a2cda84bbcc0589ffc9045a39d4a92c";
-    private static final String URL_START = "api.openweathermap.org/data/2.5/forecast?q=";
+    private static final String URL_START = "http://api.openweathermap.org/data/2.5/forecast?q=";
     private static final String URL_END = "&APPID=";
 
     private MainActivity mActivity;
@@ -29,11 +31,11 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<ForecastI
     }
 
     @Override
-    protected ArrayList<ForecastInfo> doInBackground(String... params) {
+    protected ArrayList<ForecastInfo> doInBackground(String... cityAndCountry) {
         HttpURLConnection con = null;
         InputStream is = null;
-        String city = params[0];
-        String country = params[1];
+        String city = cityAndCountry[0];
+        String country = cityAndCountry[1];
 
         try {
             con = (HttpURLConnection) (new URL(URL_START + city + "," + country + URL_END + API_KEY)).openConnection();
@@ -69,17 +71,32 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<ForecastI
     private ArrayList<ForecastInfo> getForecastsFromString(String data) {
         try {
             JSONObject jsonObject = new JSONObject(data);
+            JSONArray weatherList = jsonObject.getJSONArray("list");
 
+            ArrayList<ForecastInfo> forecastInfo = new ArrayList<>();
+            Log.e("myid", weatherList.toString());
+            for(int i = 0; i < weatherList.length(); i++) {
+                forecastInfo.add(makeForecast(weatherList.getJSONObject(i)));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return null;
     }
 
+    private ForecastInfo makeForecast(JSONObject weather) {
+        
+        return new ForecastInfo();
+    }
+
     @Override
-    protected void onPostExecute(ArrayList<ForecastInfo> result)
+    protected void onPostExecute(ArrayList<ForecastInfo> forecasts)
     {
-        super.onPostExecute(result);
-        mActivity.
+        super.onPostExecute(forecasts);
+        if(forecasts == null) {
+            mActivity.getForecastTaskFailed();
+        } else {
+            mActivity.getForecastResults(forecasts);
+        }
     }
 }

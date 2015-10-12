@@ -27,4 +27,8 @@ public class MainActivity extends AppCompatActivity {
             mDayBadgeContainer.addView(DayBadgeView.createBadge(this, forecast));
         }
     }
+
+    public void getForecastTaskFailed() {
+        //new GetForecastTask(this).execute("beamsville", "ca");
+    }
 }
