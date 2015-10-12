@@ -1,4 +1,22 @@
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:id="@+id/fragment"
-    android:name="venmo.jgzuke.weatherapp.MainActivityFragment" tools:layout="@layout/fragment_main"
-    android:layout_width="match_parent" android:layout_height="match_parent" />
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/day_badge_container"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/fragment_container"
+        android:name="venmo.jgzuke.weatherapp.DayViewFragment"
+        tools:layout="@layout/fragment_day_view"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent" />
+</LinearLayout>

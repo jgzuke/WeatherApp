@@ -1,0 +1,85 @@
+package venmo.jgzuke.weatherapp;
+
+import android.os.AsyncTask;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.ArrayList;
+
+/**
+ * Created by jgzuke on 15-10-11.
+ */
+public class GetForecastTask extends AsyncTask<String, Void, ArrayList<ForecastInfo>>
+{
+    private static final String API_KEY = "7a2cda84bbcc0589ffc9045a39d4a92c";
+    private static final String URL_START = "api.openweathermap.org/data/2.5/forecast?q=";
+    private static final String URL_END = "&APPID=";
+
+    private MainActivity mActivity;
+
+    public GetForecastTask(MainActivity activity) {
+        mActivity = activity;
+    }
+
+    @Override
+    protected ArrayList<ForecastInfo> doInBackground(String... params) {
+        HttpURLConnection con = null;
+        InputStream is = null;
+        String city = params[0];
+        String country = params[1];
+
+        try {
+            con = (HttpURLConnection) (new URL(URL_START + city + "," + country + URL_END + API_KEY)).openConnection();
+            con.setRequestMethod("GET");
+            con.setDoInput(true);
+            con.setDoOutput(true);
+            con.connect();
+
+            StringBuilder builder = new StringBuilder();
+            is = con.getInputStream();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            String line;
+            while ((line = br.readLine()) != null) {
+                builder.append(line).append("\r\n");
+            }
+
+            is.close();
+            con.disconnect();
+
+            return getForecastsFromString(builder.toString());
+        } catch(Throwable t) {
+            t.printStackTrace();
+        }
+        try {
+            if(is != null) is.close();
+            if(con != null) con.disconnect();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    private ArrayList<ForecastInfo> getForecastsFromString(String data) {
+        try {
+            JSONObject jsonObject = new JSONObject(data);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    protected void onPostExecute(ArrayList<ForecastInfo> result)
+    {
+        super.onPostExecute(result);
+        mActivity.
+    }
+}

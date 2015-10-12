@@ -1,38 +1,30 @@
 package venmo.jgzuke.weatherapp;
 
+import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.widget.LinearLayout;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private LinearLayout mDayBadgeContainer;
+    private Fragment mFragmentContainer;
+    private ArrayList<ForecastInfo> mForecasts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mDayBadgeContainer = (LinearLayout) findViewById(R.id.day_badge_container);
+
+        new GetForecastTask(this).execute("beamsville", "ca");
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+    public void getForecastResults(ArrayList<ForecastInfo> forecastResults) {
+        mForecasts = forecastResults;
+        for(ForecastInfo forecast: mForecasts) {
+            mDayBadgeContainer.addView(DayBadgeView.createBadge(this, forecast));
         }
-
-        return super.onOptionsItemSelected(item);
     }
 }
