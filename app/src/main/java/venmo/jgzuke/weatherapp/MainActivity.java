@@ -17,6 +17,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mDayBadgeContainer = (LinearLayout) findViewById(R.id.day_badge_container);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
 
         new GetForecastTask(this).execute("beamsville", "ca");
     }

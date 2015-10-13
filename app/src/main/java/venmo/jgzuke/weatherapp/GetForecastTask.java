@@ -3,6 +3,8 @@ package venmo.jgzuke.weatherapp;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.bluelinelabs.logansquare.LoganSquare;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,6 +48,8 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<ForecastI
 
             StringBuilder builder = new StringBuilder();
             is = con.getInputStream();
+            Response response = LoganSquare.parse(is, Response.class);
+
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
             String line;
             while ((line = br.readLine()) != null) {
@@ -76,7 +80,8 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<ForecastI
             ArrayList<ForecastInfo> forecastInfo = new ArrayList<>();
             Log.e("myid", weatherList.toString());
             for(int i = 0; i < weatherList.length(); i++) {
-                forecastInfo.add(makeForecast(weatherList.getJSONObject(i)));
+                makeForecast(weatherList.getJSONObject(i));
+                forecastInfo.add(null);//makeForecast(weatherList.getJSONObject(i)));
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -84,9 +89,16 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<ForecastI
         return null;
     }
 
-    private ForecastInfo makeForecast(JSONObject weather) {
-        
-        return new ForecastInfo();
+    private Forecast makeForecast(JSONObject weather) {
+        String jsonString = weather.toString();
+
+        try {
+            Forecast forecast = LoganSquare.parse(jsonString, Forecast.class);
+            return forecast;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
