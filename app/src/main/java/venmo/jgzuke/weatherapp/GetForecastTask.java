@@ -20,7 +20,7 @@ import java.util.ArrayList;
 /**
  * Created by jgzuke on 15-10-11.
  */
-public class GetForecastTask extends AsyncTask<String, Void, ArrayList<ForecastInfo>>
+public class GetForecastTask extends AsyncTask<String, Void, ArrayList<Forecast>>
 {
     private static final String API_KEY = "7a2cda84bbcc0589ffc9045a39d4a92c";
     private static final String URL_START = "http://api.openweathermap.org/data/2.5/forecast?q=";
@@ -33,7 +33,7 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<ForecastI
     }
 
     @Override
-    protected ArrayList<ForecastInfo> doInBackground(String... cityAndCountry) {
+    protected ArrayList<Forecast> doInBackground(String... cityAndCountry) {
         HttpURLConnection con = null;
         InputStream is = null;
         String city = cityAndCountry[0];
@@ -46,20 +46,13 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<ForecastI
             con.setDoOutput(true);
             con.connect();
 
-            StringBuilder builder = new StringBuilder();
             is = con.getInputStream();
             Response response = LoganSquare.parse(is, Response.class);
-
-            BufferedReader br = new BufferedReader(new InputStreamReader(is));
-            String line;
-            while ((line = br.readLine()) != null) {
-                builder.append(line).append("\r\n");
-            }
 
             is.close();
             con.disconnect();
 
-            return getForecastsFromString(builder.toString());
+            return response.getForecasts();
         } catch(Throwable t) {
             t.printStackTrace();
         }
@@ -102,7 +95,7 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<ForecastI
     }
 
     @Override
-    protected void onPostExecute(ArrayList<ForecastInfo> forecasts)
+    protected void onPostExecute(ArrayList<Forecast> forecasts)
     {
         super.onPostExecute(forecasts);
         if(forecasts == null) {

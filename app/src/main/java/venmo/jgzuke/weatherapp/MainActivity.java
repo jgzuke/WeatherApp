@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private LinearLayout mDayBadgeContainer;
     private Fragment mFragmentContainer;
-    private ArrayList<ForecastInfo> mForecasts = new ArrayList<>();
+    private ArrayList<Forecast> mForecasts = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +26,9 @@ public class MainActivity extends AppCompatActivity {
         new GetForecastTask(this).execute("beamsville", "ca");
     }
 
-    public void getForecastResults(ArrayList<ForecastInfo> forecastResults) {
+    public void getForecastResults(ArrayList<Forecast> forecastResults) {
         mForecasts = forecastResults;
-        for(ForecastInfo forecast: mForecasts) {
+        for(Forecast forecast: mForecasts) {
             mDayBadgeContainer.addView(DayBadgeView.createBadge(this, forecast));
         }
     }

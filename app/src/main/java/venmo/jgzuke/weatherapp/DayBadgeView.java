@@ -15,7 +15,7 @@ public class DayBadgeView extends LinearLayout {
     private TextView highLow;
     private TextView date;
 
-    public static DayBadgeView createBadge(Context context, ForecastInfo forecast) {
+    public static DayBadgeView createBadge(Context context, Forecast forecast) {
         DayBadgeView badge = new DayBadgeView(context);
         badge.fillBadge(forecast);
         return badge;
@@ -44,7 +44,7 @@ public class DayBadgeView extends LinearLayout {
         date = (TextView)findViewById(R.id.date);
     }
 
-    public void fillBadge(ForecastInfo forecast) {
+    public void fillBadge(Forecast forecast) {
         weekday.setText(forecast.getWeekday());
         condition.setImageResource(forecast.getCondition());
         highLow.setText(forecast.getHighLow());
