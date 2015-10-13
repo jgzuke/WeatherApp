@@ -11,5 +11,16 @@ import java.util.ArrayList;
 @JsonObject
 public class Response {
     @JsonField
-    public ArrayList<Forecast> list;
+    public ArrayList<ForecastThreeHour> list;
+
+    public ArrayList<Forecast> getResults() {
+        ArrayList<Forecast> forecasts = new ArrayList<>();
+        int forecastsTotal = list.size();
+        forecasts.add(new Forecast(list, 0, forecastsTotal-32));
+        forecasts.add(new Forecast(list, forecastsTotal-32, forecastsTotal-24));
+        forecasts.add(new Forecast(list, forecastsTotal-24, forecastsTotal-16));
+        forecasts.add(new Forecast(list, forecastsTotal-16, forecastsTotal-8));
+        forecasts.add(new Forecast(list, forecastsTotal-8, forecastsTotal));
+        return forecasts;
+    }
 }

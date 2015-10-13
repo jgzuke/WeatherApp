@@ -4,23 +4,25 @@ import com.bluelinelabs.logansquare.annotation.JsonField;
 import com.bluelinelabs.logansquare.annotation.JsonObject;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by jgzuke on 15-10-12.
  */
 @JsonObject
 public class Forecast {
-    @JsonField
-    public int dt;
+    private String mDay;
+    private String mDate;
+    private int mConditionImageId;
+    private String mCondition;
+    private String mTemp;
+    private String mHighLow;
 
-    @JsonField
-    public ForecastMain main;
+    public Forecast(ArrayList<ForecastThreeHour> forecastThreeHours, int startIndex, int endIndex) {
+        mDay = ForecastFormattingUtils.dayOfWeek(forecastThreeHours.get(startIndex).dt);
+        mDate = ForecastFormattingUtils.date(forecastThreeHours.get(startIndex).dt);
 
-    @JsonField
-    public ArrayList<ForecastWeather> weather;
-
-    @JsonField
-    public ForecastWind wind;
+    }
 
     public String getWeekday() {
         return ForecastFormattingUtils.dayOfWeek(dt);

@@ -1,6 +1,7 @@
 package venmo.jgzuke.weatherapp;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageView;
@@ -52,11 +53,13 @@ public class DayTopBadge extends LinearLayout {
         mDate.setVisibility(View.VISIBLE);
         mCondition.setVisibility(View.GONE);
         mHighLow.setVisibility(View.GONE);
+        mWeekday.setTypeface(null, Typeface.BOLD);
     }
 
     public void deselectDay() {
         mDate.setVisibility(View.GONE);
         mCondition.setVisibility(View.GONE);
         mHighLow.setVisibility(View.VISIBLE);
+        mWeekday.setTypeface(null, Typeface.NORMAL);
     }
 }

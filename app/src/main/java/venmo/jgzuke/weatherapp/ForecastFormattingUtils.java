@@ -1,15 +1,22 @@
 package venmo.jgzuke.weatherapp;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by jgzuke on 15-10-12.
  */
 public class ForecastFormattingUtils {
-    public static String dayOfWeek(int date) {
-        return "testdayofweek";
+    public static String dayOfWeek(int dt) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("EEE");
+        Date date=new Date((long)dt*1000);
+        return dateFormat.format(date);
     }
 
-    public static String date(int date) {
-        return "testdate";
+    public static String date(int dt) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MMM dd");
+        Date date=new Date((long)dt*1000);
+        return dateFormat.format(date);
     }
 
     public static int condition(int id) {

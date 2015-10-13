@@ -46,7 +46,7 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<Forecast>
             is.close();
             con.disconnect();
 
-            return response.list;
+            return response.getResults();
         } catch(Throwable t) {
             Log.e("WeatherApp", t.toString());
             t.printStackTrace();
