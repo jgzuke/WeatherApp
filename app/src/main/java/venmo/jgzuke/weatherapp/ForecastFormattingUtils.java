@@ -31,6 +31,10 @@ public class ForecastFormattingUtils {
         return Integer.toString(kelvinToFahrenheit(temp)) + "°";
     }
 
+    public static String humidity(int humidity) {
+        return Integer.toString(humidity) + "%";
+    }
+
     private static int kelvinToFahrenheit(double kelvin) {
         return (int)((kelvin - 255.37) * 1.8);
     }

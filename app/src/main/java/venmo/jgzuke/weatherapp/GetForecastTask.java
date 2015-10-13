@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class GetForecastTask extends AsyncTask<String, Void, ArrayList<Forecast>>
 {
     private static final String API_KEY = "7a2cda84bbcc0589ffc9045a39d4a92c";
-    private static final String URL_START = "http://api.openweathermap.org/data/2.5/forecast?q=";
+    private static final String URL_START = "http://api.openweathermap.org/data/2.5/forecast/daily?q=";
     private static final String URL_END = "&APPID=";
 
     private MainActivity mActivity;
@@ -46,7 +46,7 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<Forecast>
             is.close();
             con.disconnect();
 
-            return response.getResults();
+            return response.list;
         } catch(Throwable t) {
             Log.e("WeatherApp", t.toString());
             t.printStackTrace();

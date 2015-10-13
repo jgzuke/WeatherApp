@@ -7,7 +7,13 @@ import com.bluelinelabs.logansquare.annotation.JsonObject;
  * Created by jgzuke on 15-10-12.
  */
 @JsonObject
-public class ForecastWind {
+public class ForecastTemp {
     @JsonField
-    public double speed;
+    public double day;
+
+    @JsonField
+    public double min;
+
+    @JsonField
+    public double max;
 }

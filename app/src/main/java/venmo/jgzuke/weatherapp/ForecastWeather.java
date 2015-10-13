@@ -10,4 +10,7 @@ import com.bluelinelabs.logansquare.annotation.JsonObject;
 public class ForecastWeather {
     @JsonField
     public int id;
+
+    @JsonField
+    public String main;
 }
