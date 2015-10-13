@@ -8,36 +8,36 @@
     <LinearLayout
         android:id="@+id/day_badge_container"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <venmo.jgzuke.weatherapp.DayTopBadge
             android:id="@+id/day_1"
-            android:layout_width="0"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"/>
 
         <venmo.jgzuke.weatherapp.DayTopBadge
             android:id="@+id/day_2"
-            android:layout_width="0"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"/>
 
         <venmo.jgzuke.weatherapp.DayTopBadge
             android:id="@+id/day_3"
-            android:layout_width="0"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"/>
 
         <venmo.jgzuke.weatherapp.DayTopBadge
             android:id="@+id/day_4"
-            android:layout_width="0"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"/>
 
         <venmo.jgzuke.weatherapp.DayTopBadge
             android:id="@+id/day_5"
-            android:layout_width="0"
+            android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"/>
     </LinearLayout>

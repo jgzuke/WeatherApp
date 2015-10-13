@@ -20,61 +20,25 @@ public class Forecast {
     public ArrayList<ForecastWeather> weather;
 
     @JsonField
-    public ForecastClouds clouds;
-
-    @JsonField
     public ForecastWind wind;
 
-    @JsonObject
-    public class ForecastMain {
-        @JsonField
-        public double temp;
-
-        //@SerializedName("temp_min") // Annotation needed for GSON
-        //@JsonProperty("temp_min") // Annotation needed for Jackson Databind
-        @JsonField(name = "temp_min")
-        public double tempMin;
-
-        //@SerializedName("temp_max") // Annotation needed for GSON
-        //@JsonProperty("temp_max") // Annotation needed for Jackson Databind
-        @JsonField(name = "temp_max")
-        public double tempMax;
-
-        @JsonField
-        public int humidity;
-    }
-
-    @JsonObject
-    public class ForecastWeather {
-        @JsonField
-        public int id;
-    }
-
-    @JsonObject
-    public class ForecastClouds {
-        @JsonField
-        public int all;
-    }
-
-    @JsonObject
-    public class ForecastWind {
-        @JsonField
-        public double speed;
-    }
-
     public String getWeekday() {
-        return "test";
-    }
-
-    public int getConditionImageID() {
-        return 0;
-    }
-
-    public String getHighLow() {
-        return "test2";
+        return ForecastFormattingUtils.dayOfWeek(dt);
     }
 
     public String getDate() {
-        return "test3";
+        return ForecastFormattingUtils.date(dt);
+    }
+
+    public int getConditionImageID() {
+        return ForecastFormattingUtils.condition(weather.get(0).id);
+    }
+
+    public String getHighLow() {
+        return ForecastFormattingUtils.highLow(main.tempMax, main.tempMin);
+    }
+
+    public String getTemperature() {
+        return ForecastFormattingUtils.temp(main.temp);
     }
 }

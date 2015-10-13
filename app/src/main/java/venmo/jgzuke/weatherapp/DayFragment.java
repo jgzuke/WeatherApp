@@ -18,10 +18,12 @@ public class DayFragment extends Fragment {
     private TextView highLow;
     private TextView date;
 
-    public static DayFragment createBadge(Context context, Forecast forecast) {
-        DayFragment dayFragment = new DayFragment();
-        dayFragment.fillFragment(forecast);
-        return dayFragment;
+    private Forecast mForecast;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Bundle extras = getArguments();
     }
 
     @Override
@@ -32,14 +34,22 @@ public class DayFragment extends Fragment {
         condition = (ImageView) view.findViewById(R.id.condition);
         highLow = (TextView) view.findViewById(R.id.high_low);
         date = (TextView) view.findViewById(R.id.date);
+        fillContent();
 
         return view;
     }
 
+    private void fillContent() {
+        if(date != null && mForecast != null) {
+            weekday.setText(mForecast.getWeekday());
+            condition.setImageResource(mForecast.getConditionImageID());
+            highLow.setText(mForecast.getHighLow());
+            date.setText(mForecast.getDate());
+        }
+    }
+
     public void fillFragment(Forecast forecast) {
-        weekday.setText(forecast.getWeekday());
-        condition.setImageResource(forecast.getConditionImageID());
-        highLow.setText(forecast.getHighLow());
-        date.setText(forecast.getDate());
+        mForecast = forecast;
+        fillContent();
     }
 }

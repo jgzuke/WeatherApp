@@ -3,7 +3,9 @@ package venmo.jgzuke.weatherapp;
 import android.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -12,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Fragment mFragmentContainer;
     private ArrayList<Forecast> mForecasts = new ArrayList<>();
+    private ArrayList<DayTopBadge> mForecastBadges = new ArrayList<>();
+    private ArrayList<DayFragment> mForecastFragments = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,16 +27,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         new GetForecastTask(this).execute("beamsville", "ca");
+
+        for(int i = 0; i < NUMBER_FORECASTS; i++) {
+            mForecastFragments.add(new DayFragment());
+            mForecastBadges.add((DayTopBadge) findViewById(DAY_TOP_BADGE_IDS[i]));
+        }
     }
 
     public void getForecastResults(ArrayList<Forecast> forecasts) {
         mForecasts = forecasts;
         for(int i = 0; i < NUMBER_FORECASTS; i++) {
-            ((DayTopBadge) findViewById(DAY_TOP_BADGE_IDS[i])).fillBadge(mForecasts.get(i));
+            mForecastBadges.get(i).fillBadge(forecasts.get(i));
+            mForecastFragments.get(i).fillFragment(forecasts.get(i));
         }
     }
 
-    public void getForecastTaskFailed() {
-        //new GetForecastTask(this).execute("beamsville", "ca");
+    public void forecastTaskFailed() {
+        Toast.makeText(this, "Forecast failed, please try again later", Toast.LENGTH_LONG).show();
     }
 }

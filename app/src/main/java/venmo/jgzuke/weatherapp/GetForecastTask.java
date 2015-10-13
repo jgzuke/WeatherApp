@@ -45,7 +45,7 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<Forecast>
             is.close();
             con.disconnect();
 
-            return response.getForecasts();
+            return response.list;
         } catch(Throwable t) {
             t.printStackTrace();
         }
@@ -63,7 +63,7 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<Forecast>
     {
         super.onPostExecute(forecasts);
         if(forecasts == null) {
-            mActivity.getForecastTaskFailed();
+            mActivity.forecastTaskFailed();
         } else {
             mActivity.getForecastResults(forecasts);
         }
