@@ -12,7 +12,8 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /**
- * Created by jgzuke on 15-10-11.
+ * AsyncTask to get 5 day daily forecast from api see http://openweathermap.org/forecast16#data
+ * Results are stored in Forecast objects and returned to the MainActivity
  */
 public class GetForecastTask extends AsyncTask<Void, Void, ArrayList<Forecast>>
 {
@@ -34,6 +35,7 @@ public class GetForecastTask extends AsyncTask<Void, Void, ArrayList<Forecast>>
         InputStream is = null;
 
         try {
+            // eg. http://api.openweathermap.org/data/2.5/forecast/daily?q=Waterloo,Ca&units=metric&cnt=5&APPID=" + API_KEY
             String url = URL_START + mActivity.cityAndCountry() + (mActivity.isMetric()? URL_METRIC : URL_IMPERIAL) + URL_END + API_KEY;
             con = (HttpURLConnection) (new URL(url)).openConnection();
             con.setRequestMethod("GET");
@@ -42,6 +44,8 @@ public class GetForecastTask extends AsyncTask<Void, Void, ArrayList<Forecast>>
             con.connect();
 
             is = con.getInputStream();
+
+            // Use LoganSquare to parse json, see https://github.com/bluelinelabs/LoganSquare
             Response response = LoganSquare.parse(is, Response.class);
 
             is.close();
@@ -52,6 +56,8 @@ public class GetForecastTask extends AsyncTask<Void, Void, ArrayList<Forecast>>
             Log.e("WeatherApp", t.toString());
             t.printStackTrace();
         }
+
+        // Close Connection and InputStream if we ran into problems
         try {
             if(is != null) is.close();
             if(con != null) con.disconnect();
@@ -63,10 +69,10 @@ public class GetForecastTask extends AsyncTask<Void, Void, ArrayList<Forecast>>
     }
 
     @Override
-    protected void onPostExecute(ArrayList<Forecast> forecasts)
-    {
+    protected void onPostExecute(ArrayList<Forecast> forecasts) {
         super.onPostExecute(forecasts);
         if(forecasts == null) {
+            // If we couldn't complete request for some reason let MainActivity know
             mActivity.forecastTaskFailed();
         } else {
             mActivity.getForecastResults(forecasts);

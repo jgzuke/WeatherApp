@@ -6,7 +6,7 @@ import com.bluelinelabs.logansquare.annotation.JsonObject;
 import java.util.ArrayList;
 
 /**
- * Created by jgzuke on 15-10-12.
+ * Model for full json response, see https://github.com/bluelinelabs/LoganSquare
  */
 @JsonObject
 public class Response {

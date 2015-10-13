@@ -4,7 +4,7 @@ import com.bluelinelabs.logansquare.annotation.JsonField;
 import com.bluelinelabs.logansquare.annotation.JsonObject;
 
 /**
- * Created by jgzuke on 15-10-12.
+ * Model for Forecast weather data, see https://github.com/bluelinelabs/LoganSquare
  */
 @JsonObject
 public class ForecastWeather {
