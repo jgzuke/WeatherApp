@@ -42,10 +42,8 @@
             android:layout_height="match_parent"/>
     </LinearLayout>
 
-    <fragment
+    <FrameLayout
         android:id="@+id/fragment_container"
-        android:name="venmo.jgzuke.weatherapp.DayFragment"
-        tools:layout="@layout/fragment_day_view"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"/>
 </LinearLayout>
