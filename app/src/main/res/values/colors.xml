@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="brown_1" type="color">#dd985f</item>
-    <item name="brown_2" type="color">#cc7f5f</item>
-    <item name="brown_3" type="color">#b26956</item>
-    <item name="brown_4" type="color">#90564b</item>
-    <item name="brown_5" type="color">#65473f</item>
+    <item name="color_1" type="color">#26a69a</item>
+    <item name="color_2" type="color">#009688</item>
+    <item name="color_3" type="color">#00897b</item>
+    <item name="color_4" type="color">#00796b</item>
+    <item name="color_5" type="color">#00695c</item>
+    <item name="color_dark" type="color">#004d40</item>
 
     <integer-array name="day_background_colors">
-        <item>@color/brown_1</item>
-        <item>@color/brown_2</item>
-        <item>@color/brown_3</item>
-        <item>@color/brown_4</item>
-        <item>@color/brown_5</item>
+        <item>@color/color_1</item>
+        <item>@color/color_2</item>
+        <item>@color/color_3</item>
+        <item>@color/color_4</item>
+        <item>@color/color_5</item>
     </integer-array>
 </resources>

@@ -24,6 +24,7 @@ public class DayFragment extends Fragment {
 
     private int mColor;
     private Forecast mForecast;
+    private String mCityName;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -43,7 +44,7 @@ public class DayFragment extends Fragment {
     private void fillContent() {
         if(mHumidity != null && mForecast != null) {
             mIcon.setIconResource(mForecast.getIconId(getContext()));
-            mCity.setText(mForecast.getWeekday());
+            mCity.setText(mCityName);
             mHighLow.setText(mForecast.getHighLow());
             mDescription.setText(mForecast.getDescription());
             mHumidity.setText(mForecast.getHumidity());
@@ -51,9 +52,10 @@ public class DayFragment extends Fragment {
         }
     }
 
-    public void fillFragment(Forecast forecast, int color) {
+    public void fillFragment(Forecast forecast, int color, String city) {
         mForecast = forecast;
         mColor = color;
+        mCityName = city;
         fillContent();
     }
 }

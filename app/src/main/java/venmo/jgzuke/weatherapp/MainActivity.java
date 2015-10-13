@@ -18,6 +18,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ArrayList<DayTopBadge> mForecastBadges = new ArrayList<>();
     private ArrayList<DayFragment> mForecastFragments = new ArrayList<>();
 
+    private boolean isMetric = false;
+    private String city = "Waterloo";
+    private String country = "Ca";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onResume() {
         super.onResume();
-        new GetForecastTask(this).execute("beamsville", "ca");
+        new GetForecastTask(this).execute();
 
         for(int i = 0; i < NUMBER_FORECASTS; i++) {
             mForecastFragments.add(new DayFragment());
@@ -42,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.day_badge_container).setVisibility(View.VISIBLE);
         for(int i = 0; i < NUMBER_FORECASTS; i++) {
             mForecastBadges.get(i).fillBadge(forecasts.get(i), BACKGROUND_COLORS[i]);
-            mForecastFragments.get(i).fillFragment(forecasts.get(i), BACKGROUND_COLORS[i]);
+            mForecastFragments.get(i).fillFragment(forecasts.get(i), BACKGROUND_COLORS[i], city);
         }
         showFragment(0);
     }
@@ -80,6 +84,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public boolean isMetric() {
-        return true;
+        return isMetric;
+    }
+
+    public String cityAndCountry() {
+        return city + "," + country;
     }
 }

@@ -25,16 +25,8 @@ public class ForecastFormattingUtils {
         return dateFormat.format(date);
     }
 
-    public static int condition(int id) {
-        return 0;
-    }
-
     public static String highLow(double max, double min) {
         return Integer.toString((int)max) + "°/" + Integer.toString((int)min) + "°";
-    }
-
-    public static String temp(double temp) {
-        return Integer.toString((int)temp) + "°";
     }
 
     public static String humidity(int humidity) {
