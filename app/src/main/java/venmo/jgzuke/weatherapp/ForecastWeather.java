@@ -13,4 +13,7 @@ public class ForecastWeather {
 
     @JsonField
     public String main;
+
+    @JsonField
+    public String icon;
 }

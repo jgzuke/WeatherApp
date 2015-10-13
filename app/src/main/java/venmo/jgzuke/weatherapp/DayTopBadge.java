@@ -8,12 +8,14 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.pwittchen.weathericonview.WeatherIconView;
+
 /**
  * Created by jgzuke on 15-10-11.
  */
 public class DayTopBadge extends LinearLayout {
     private TextView mWeekday;
-    private ImageView mCondition;
+    private WeatherIconView mIcon;
     private TextView mHighLow;
     private TextView mDate;
 
@@ -35,14 +37,14 @@ public class DayTopBadge extends LinearLayout {
     private void init(Context context) {
         inflate(context, R.layout.view_day_badge, this);
         mWeekday = (TextView)findViewById(R.id.weekday);
-        mCondition = (ImageView)findViewById(R.id.condition);
+        mIcon = (WeatherIconView)findViewById(R.id.condition);
         mHighLow = (TextView)findViewById(R.id.high_low);
         mDate = (TextView)findViewById(R.id.date);
     }
 
     public void fillBadge(Forecast forecast, int color) {
         mWeekday.setText(forecast.getWeekday());
-        mCondition.setImageResource(forecast.getConditionImageID());
+        mIcon.setIconResource(forecast.getIconId());
         mHighLow.setText(forecast.getHighLow());
         mDate.setText(forecast.getDate());
 
@@ -51,14 +53,14 @@ public class DayTopBadge extends LinearLayout {
 
     public void selectDay() {
         mDate.setVisibility(View.VISIBLE);
-        mCondition.setVisibility(View.GONE);
+        mIcon.setVisibility(View.GONE);
         mHighLow.setVisibility(View.GONE);
         mWeekday.setTypeface(null, Typeface.BOLD);
     }
 
     public void deselectDay() {
         mDate.setVisibility(View.GONE);
-        mCondition.setVisibility(View.GONE);
+        mIcon.setVisibility(View.GONE);
         mHighLow.setVisibility(View.VISIBLE);
         mWeekday.setTypeface(null, Typeface.NORMAL);
     }

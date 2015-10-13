@@ -30,10 +30,6 @@ public class Forecast {
         return ForecastFormattingUtils.date(dt);
     }
 
-    public int getConditionImageID() {
-        return ForecastFormattingUtils.condition(weather.get(0).id);
-    }
-
     public String getHighLow() {
         return ForecastFormattingUtils.highLow(temp.max, temp.min);
     }
@@ -44,5 +40,9 @@ public class Forecast {
 
     public String getHumidity() {
         return ForecastFormattingUtils.humidity(humidity);
+    }
+
+    public String getIconId() {
+        return ForecastFormattingUtils.iconId(weather.get(0).icon);
     }
 }

@@ -9,13 +9,15 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.github.pwittchen.weathericonview.WeatherIconView;
+
 /**
  * A placeholder fragment containing a simple view.
  */
 public class DayFragment extends Fragment {
     private View mView;
     private TextView mWeekday;
-    private ImageView mCondition;
+    private WeatherIconView mIcon;
     private TextView mHighLow;
     private TextView mDate;
 
@@ -33,7 +35,7 @@ public class DayFragment extends Fragment {
         mView = inflater.inflate(R.layout.fragment_day_view, container, false);
 
         mWeekday = (TextView) mView.findViewById(R.id.weekday);
-        mCondition = (ImageView) mView.findViewById(R.id.condition);
+        mIcon = (WeatherIconView) mView.findViewById(R.id.condition);
         mHighLow = (TextView) mView.findViewById(R.id.high_low);
         mDate = (TextView) mView.findViewById(R.id.date);
         fillContent();
@@ -44,7 +46,7 @@ public class DayFragment extends Fragment {
     private void fillContent() {
         if(mDate != null && mForecast != null) {
             mWeekday.setText(mForecast.getWeekday());
-            mCondition.setImageResource(mForecast.getConditionImageID());
+            mIcon.setIconResource(mForecast.getIconId());
             mHighLow.setText(mForecast.getHighLow());
             mDate.setText(mForecast.getDate());
 

@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void getForecastResults(ArrayList<Forecast> forecasts) {
+        findViewById(R.id.day_badge_container).setVisibility(View.VISIBLE);
         for(int i = 0; i < NUMBER_FORECASTS; i++) {
             mForecastBadges.get(i).fillBadge(forecasts.get(i), BACKGROUND_COLORS[i]);
             mForecastFragments.get(i).fillFragment(forecasts.get(i), BACKGROUND_COLORS[i]);
@@ -76,5 +77,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.day_5: showFragment(4);
                 return;
         }
+    }
+
+    public boolean isMetric() {
+        return true;
     }
 }

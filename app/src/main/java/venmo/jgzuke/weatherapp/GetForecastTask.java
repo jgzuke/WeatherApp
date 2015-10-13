@@ -18,7 +18,9 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<Forecast>
 {
     private static final String API_KEY = "7a2cda84bbcc0589ffc9045a39d4a92c";
     private static final String URL_START = "http://api.openweathermap.org/data/2.5/forecast/daily?q=";
-    private static final String URL_END = "&APPID=";
+    private static final String URL_METRIC = "&units=metric";
+    private static final String URL_IMPERIAL = "&units=metric";
+    private static final String URL_END = "&cnt=5&APPID=";
 
     private MainActivity mActivity;
 
@@ -34,7 +36,8 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<Forecast>
         String country = cityAndCountry[1];
 
         try {
-            con = (HttpURLConnection) (new URL(URL_START + city + "," + country + URL_END + API_KEY)).openConnection();
+            String url = URL_START + city + "," + country + (mActivity.isMetric()? URL_METRIC : URL_IMPERIAL) + URL_END + API_KEY;
+            con = (HttpURLConnection) (new URL(url)).openConnection();
             con.setRequestMethod("GET");
             con.setDoInput(true);
             con.setDoOutput(true);
