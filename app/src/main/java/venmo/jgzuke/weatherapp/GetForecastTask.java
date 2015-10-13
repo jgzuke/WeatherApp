@@ -1,6 +1,7 @@
 package venmo.jgzuke.weatherapp;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.bluelinelabs.logansquare.LoganSquare;
 
@@ -47,12 +48,14 @@ public class GetForecastTask extends AsyncTask<String, Void, ArrayList<Forecast>
 
             return response.list;
         } catch(Throwable t) {
+            Log.e("WeatherApp", t.toString());
             t.printStackTrace();
         }
         try {
             if(is != null) is.close();
             if(con != null) con.disconnect();
         } catch (IOException e) {
+            Log.e("WeatherApp", e.toString());
             e.printStackTrace();
         }
         return null;

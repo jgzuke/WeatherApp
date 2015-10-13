@@ -2,6 +2,7 @@ package venmo.jgzuke.weatherapp;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -10,10 +11,10 @@ import android.widget.TextView;
  * Created by jgzuke on 15-10-11.
  */
 public class DayTopBadge extends LinearLayout {
-    private TextView weekday;
-    private ImageView condition;
-    private TextView highLow;
-    private TextView date;
+    private TextView mWeekday;
+    private ImageView mCondition;
+    private TextView mHighLow;
+    private TextView mDate;
 
     public DayTopBadge(Context context) {
         super(context);
@@ -32,16 +33,30 @@ public class DayTopBadge extends LinearLayout {
 
     private void init(Context context) {
         inflate(context, R.layout.view_day_badge, this);
-        weekday = (TextView)findViewById(R.id.weekday);
-        condition = (ImageView)findViewById(R.id.condition);
-        highLow = (TextView)findViewById(R.id.high_low);
-        date = (TextView)findViewById(R.id.date);
+        mWeekday = (TextView)findViewById(R.id.weekday);
+        mCondition = (ImageView)findViewById(R.id.condition);
+        mHighLow = (TextView)findViewById(R.id.high_low);
+        mDate = (TextView)findViewById(R.id.date);
     }
 
-    public void fillBadge(Forecast forecast) {
-        weekday.setText(forecast.getWeekday());
-        condition.setImageResource(forecast.getConditionImageID());
-        highLow.setText(forecast.getHighLow());
-        date.setText(forecast.getDate());
+    public void fillBadge(Forecast forecast, int color) {
+        mWeekday.setText(forecast.getWeekday());
+        mCondition.setImageResource(forecast.getConditionImageID());
+        mHighLow.setText(forecast.getHighLow());
+        mDate.setText(forecast.getDate());
+
+        setBackgroundColor(color);
+    }
+
+    public void selectDay() {
+        mDate.setVisibility(View.VISIBLE);
+        mCondition.setVisibility(View.GONE);
+        mHighLow.setVisibility(View.GONE);
+    }
+
+    public void deselectDay() {
+        mDate.setVisibility(View.GONE);
+        mCondition.setVisibility(View.GONE);
+        mHighLow.setVisibility(View.VISIBLE);
     }
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="brown_1" type="color">#dd985f</item>
+    <item name="brown_2" type="color">#cc7f5f</item>
+    <item name="brown_3" type="color">#b26956</item>
+    <item name="brown_4" type="color">#90564b</item>
+    <item name="brown_5" type="color">#65473f</item>
+
+    <integer-array name="day_background_colors">
+        <item>@color/brown_1</item>
+        <item>@color/brown_2</item>
+        <item>@color/brown_3</item>
+        <item>@color/brown_4</item>
+        <item>@color/brown_5</item>
+    </integer-array>
+</resources>

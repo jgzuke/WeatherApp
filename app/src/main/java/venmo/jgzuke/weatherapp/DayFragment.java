@@ -13,11 +13,13 @@ import android.widget.TextView;
  * A placeholder fragment containing a simple view.
  */
 public class DayFragment extends Fragment {
-    private TextView weekday;
-    private ImageView condition;
-    private TextView highLow;
-    private TextView date;
+    private View mView;
+    private TextView mWeekday;
+    private ImageView mCondition;
+    private TextView mHighLow;
+    private TextView mDate;
 
+    private int mColor;
     private Forecast mForecast;
 
     @Override
@@ -28,28 +30,31 @@ public class DayFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_day_view, container, false);
+        mView = inflater.inflate(R.layout.fragment_day_view, container, false);
 
-        weekday = (TextView) view.findViewById(R.id.weekday);
-        condition = (ImageView) view.findViewById(R.id.condition);
-        highLow = (TextView) view.findViewById(R.id.high_low);
-        date = (TextView) view.findViewById(R.id.date);
+        mWeekday = (TextView) mView.findViewById(R.id.weekday);
+        mCondition = (ImageView) mView.findViewById(R.id.condition);
+        mHighLow = (TextView) mView.findViewById(R.id.high_low);
+        mDate = (TextView) mView.findViewById(R.id.date);
         fillContent();
 
-        return view;
+        return mView;
     }
 
     private void fillContent() {
-        if(date != null && mForecast != null) {
-            weekday.setText(mForecast.getWeekday());
-            condition.setImageResource(mForecast.getConditionImageID());
-            highLow.setText(mForecast.getHighLow());
-            date.setText(mForecast.getDate());
+        if(mDate != null && mForecast != null) {
+            mWeekday.setText(mForecast.getWeekday());
+            mCondition.setImageResource(mForecast.getConditionImageID());
+            mHighLow.setText(mForecast.getHighLow());
+            mDate.setText(mForecast.getDate());
+
+            mView.setBackgroundColor(mColor);
         }
     }
 
-    public void fillFragment(Forecast forecast) {
+    public void fillFragment(Forecast forecast, int color) {
         mForecast = forecast;
+        mColor = color;
         fillContent();
     }
 }

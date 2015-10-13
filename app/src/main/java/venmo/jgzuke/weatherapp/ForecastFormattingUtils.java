@@ -17,10 +17,14 @@ public class ForecastFormattingUtils {
     }
 
     public static String highLow(double max, double min) {
-        return Double.toString(max) + "o/" + Double.toString(min) + "o";
+        return Integer.toString(kelvinToFahrenheit(max)) + "°/" + Integer.toString(kelvinToFahrenheit(min)) + "°";
     }
 
     public static String temp(double temp) {
-        return Double.toString(temp) + "o";
+        return Integer.toString(kelvinToFahrenheit(temp)) + "°";
+    }
+
+    private static int kelvinToFahrenheit(double kelvin) {
+        return (int)((kelvin - 255.37) * 1.8);
     }
 }
