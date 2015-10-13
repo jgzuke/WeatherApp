@@ -46,23 +46,31 @@ public class ForecastFormattingUtils {
     }
 
     /**
+     * Returns Temp high/low
+     * @param max max temp in Celsius of Fahrenheit
+     * @param min min temp in Celsius of Fahrenheit
+     * @return eg. High 57°/Low 43°
+     */
+    public static String highLowLong(double max, double min) {
+        return "High " + Integer.toString((int)max) + "°/Low " + Integer.toString((int)min) + "°";
+    }
+
+    /**
      * Returns humidity percent
      * @param humidity Integer percent of humidity
      * @return eg. 86% humidity
      */
     public static String humidity(int humidity) {
-        return Integer.toString(humidity) + "% humidity";
+        return "Humidity: " + Integer.toString(humidity) + "%";
     }
 
     /**
-     * Returns short description of weather'
-     * This method returns what it is given for now,
-     * it is here for consistency, if someone wants to change format
+     * Returns short description of weather
      * @param weather short description of weather
-     * @return eg. short description of weather
+     * @return eg. Light rain
      */
     public static String weather(String weather) {
-        return weather;
+        return weather.substring(0, 1).toUpperCase() + weather.substring(1);
     }
 
     /**

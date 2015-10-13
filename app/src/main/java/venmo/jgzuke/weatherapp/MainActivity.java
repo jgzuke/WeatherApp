@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private static final int[] DAY_TOP_BADGE_IDS = {R.id.day_1, R.id.day_2, R.id.day_3, R.id.day_4, R.id.day_5};
-    private int[] BACKGROUND_COLORS = {R.id.day_1, R.id.day_2, R.id.day_3, R.id.day_4, R.id.day_5};
+    private int[] BACKGROUND_COLORS;
     private static final int NUMBER_FORECASTS = 5;
 
     private ArrayList<DayTopBadge> mForecastBadges = new ArrayList<>();

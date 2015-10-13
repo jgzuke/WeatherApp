@@ -53,11 +53,19 @@ public class Forecast {
     }
 
     /**
+     * Returns Temp high/low long form
+     * @return eg. High 57°/Low 43°
+     */
+    public String getHighLowLong() {
+        return ForecastFormattingUtils.highLowLong(temp.max, temp.min);
+    }
+
+    /**
      * Returns short description of weather
      * @return eg. Sunny
      */
     public String getDescription() {
-        return ForecastFormattingUtils.weather(weather.get(0).main);
+        return ForecastFormattingUtils.weather(weather.get(0).description);
     }
 
     /**

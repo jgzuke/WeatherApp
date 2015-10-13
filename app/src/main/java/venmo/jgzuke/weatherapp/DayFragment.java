@@ -50,7 +50,7 @@ public class DayFragment extends Fragment {
         if(inflatedOrGotForecast) {
             mIcon.setIconResource(mForecast.getIconId(getContext()));
             mCity.setText(mCityName);
-            mHighLow.setText(mForecast.getHighLow());
+            mHighLow.setText(mForecast.getHighLowLong());
             mDescription.setText(mForecast.getDescription());
             mHumidity.setText(mForecast.getHumidity());
             mView.setBackgroundColor(mColor);
