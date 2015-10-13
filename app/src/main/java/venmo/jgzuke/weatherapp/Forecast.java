@@ -1,5 +1,7 @@
 package venmo.jgzuke.weatherapp;
 
+import android.content.Context;
+
 import com.bluelinelabs.logansquare.annotation.JsonField;
 import com.bluelinelabs.logansquare.annotation.JsonObject;
 
@@ -34,15 +36,15 @@ public class Forecast {
         return ForecastFormattingUtils.highLow(temp.max, temp.min);
     }
 
-    public String getTemperature() {
-        return ForecastFormattingUtils.temp(temp.day);
+    public String getDescription() {
+        return weather.get(0).main;
     }
 
     public String getHumidity() {
         return ForecastFormattingUtils.humidity(humidity);
     }
 
-    public String getIconId() {
-        return ForecastFormattingUtils.iconId(weather.get(0).icon);
+    public String getIconId(Context context) {
+        return ForecastFormattingUtils.iconId(weather.get(0).icon, context);
     }
 }

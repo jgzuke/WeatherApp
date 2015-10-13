@@ -16,40 +16,37 @@ import com.github.pwittchen.weathericonview.WeatherIconView;
  */
 public class DayFragment extends Fragment {
     private View mView;
-    private TextView mWeekday;
     private WeatherIconView mIcon;
+    private TextView mCity;
     private TextView mHighLow;
-    private TextView mDate;
+    private TextView mDescription;
+    private TextView mHumidity;
 
     private int mColor;
     private Forecast mForecast;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Bundle extras = getArguments();
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mView = inflater.inflate(R.layout.fragment_day_view, container, false);
 
-        mWeekday = (TextView) mView.findViewById(R.id.weekday);
         mIcon = (WeatherIconView) mView.findViewById(R.id.condition);
+
+        mCity = (TextView) mView.findViewById(R.id.city);
         mHighLow = (TextView) mView.findViewById(R.id.high_low);
-        mDate = (TextView) mView.findViewById(R.id.date);
+        mDescription = (TextView) mView.findViewById(R.id.description);
+        mHumidity = (TextView) mView.findViewById(R.id.humidity);
         fillContent();
 
         return mView;
     }
 
     private void fillContent() {
-        if(mDate != null && mForecast != null) {
-            mWeekday.setText(mForecast.getWeekday());
-            mIcon.setIconResource(mForecast.getIconId());
+        if(mHumidity != null && mForecast != null) {
+            mIcon.setIconResource(mForecast.getIconId(getContext()));
+            mCity.setText(mForecast.getWeekday());
             mHighLow.setText(mForecast.getHighLow());
-            mDate.setText(mForecast.getDate());
-
+            mDescription.setText(mForecast.getDescription());
+            mHumidity.setText(mForecast.getHumidity());
             mView.setBackgroundColor(mColor);
         }
     }

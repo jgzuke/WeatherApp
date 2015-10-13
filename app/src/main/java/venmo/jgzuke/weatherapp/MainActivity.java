@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void forecastTaskFailed() {
-        Toast.makeText(this, "Forecast failed, please try again later", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, getString(R.string.forecast_failed), Toast.LENGTH_LONG).show();
     }
 
     @Override

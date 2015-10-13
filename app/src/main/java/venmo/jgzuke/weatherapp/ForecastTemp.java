@@ -9,9 +9,6 @@ import com.bluelinelabs.logansquare.annotation.JsonObject;
 @JsonObject
 public class ForecastTemp {
     @JsonField
-    public double day;
-
-    @JsonField
     public double min;
 
     @JsonField

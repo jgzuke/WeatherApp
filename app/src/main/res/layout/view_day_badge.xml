@@ -4,7 +4,7 @@
     xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="wrap_content"
     android:padding="5dp"
     android:animateLayoutChanges="true"
     android:gravity="center">
@@ -16,12 +16,11 @@
         android:layout_height="wrap_content" />
 
     <com.github.pwittchen.weathericonview.WeatherIconView
-        android:id="@+id/icon"
+        android:id="@+id/condition"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        custom:weatherIconResource="@string/wi_day_sunny_overcast"
         custom:weatherIconColor="@android:color/white"
-        custom:weatherIconSize="50" />
+        custom:weatherIconSize="26" />
 
     <TextView
         android:id="@+id/high_low"
@@ -30,6 +29,7 @@
 
     <TextView
         android:id="@+id/date"
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone" />

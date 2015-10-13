@@ -1,5 +1,7 @@
 package venmo.jgzuke.weatherapp;
 
+import android.content.Context;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -7,8 +9,9 @@ import java.util.Date;
  * Created by jgzuke on 15-10-12.
  */
 public class ForecastFormattingUtils {
-    private static final String[] ICON_IDS = {"wi_day_sunny", "wi_day_cloudy", "wi_cloud",
-            "wi_cloudy", "wi_rain", "wi_day_rain_mix", "wi_thunderstorm", "wi_snow", "wi-fog"};
+    private static final int[] ICON_IDS = {R.string.wi_day_sunny, R.string.wi_day_cloudy,
+            R.string.wi_cloud, R.string.wi_cloudy, R.string.wi_rain, R.string.wi_day_showers,
+            R.string.wi_thunderstorm, R.string.wi_snow, R.string.wi_fog};
 
     public static String dayOfWeek(int dt) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("EEE");
@@ -35,13 +38,13 @@ public class ForecastFormattingUtils {
     }
 
     public static String humidity(int humidity) {
-        return Integer.toString(humidity) + "%";
+        return Integer.toString(humidity) + "% humidity";
     }
 
-    public static String iconId(String icon) {
+    public static String iconId(String icon, Context context) {
         int index = Integer.parseInt(icon.substring(0,2));
         if(index > 4) index -= 4;       // To account for gaps in labeling
         if(index > 8) index -= 37;      // see http://openweathermap.org/weather-conditions "Icon list"
-        return ICON_IDS[index-1];
+        return context.getString(ICON_IDS[index-1]);
     }
 }

@@ -44,7 +44,7 @@ public class DayTopBadge extends LinearLayout {
 
     public void fillBadge(Forecast forecast, int color) {
         mWeekday.setText(forecast.getWeekday());
-        mIcon.setIconResource(forecast.getIconId());
+        mIcon.setIconResource(forecast.getIconId(getContext()));
         mHighLow.setText(forecast.getHighLow());
         mDate.setText(forecast.getDate());
 
@@ -60,7 +60,7 @@ public class DayTopBadge extends LinearLayout {
 
     public void deselectDay() {
         mDate.setVisibility(View.GONE);
-        mIcon.setVisibility(View.GONE);
+        mIcon.setVisibility(View.VISIBLE);
         mHighLow.setVisibility(View.VISIBLE);
         mWeekday.setTypeface(null, Typeface.NORMAL);
     }
