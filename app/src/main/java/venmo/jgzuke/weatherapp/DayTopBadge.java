@@ -9,29 +9,23 @@ import android.widget.TextView;
 /**
  * Created by jgzuke on 15-10-11.
  */
-public class DayBadgeView extends LinearLayout {
+public class DayTopBadge extends LinearLayout {
     private TextView weekday;
     private ImageView condition;
     private TextView highLow;
     private TextView date;
 
-    public static DayBadgeView createBadge(Context context, Forecast forecast) {
-        DayBadgeView badge = new DayBadgeView(context);
-        badge.fillBadge(forecast);
-        return badge;
-    }
-
-    public DayBadgeView(Context context) {
+    public DayTopBadge(Context context) {
         super(context);
         init(context);
     }
 
-    public DayBadgeView(Context context, AttributeSet attrs) {
+    public DayTopBadge(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context);
     }
 
-    public DayBadgeView(Context context, AttributeSet attrs, int defStyle) {
+    public DayTopBadge(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(context);
     }
@@ -46,7 +40,7 @@ public class DayBadgeView extends LinearLayout {
 
     public void fillBadge(Forecast forecast) {
         weekday.setText(forecast.getWeekday());
-        condition.setImageResource(forecast.getCondition());
+        condition.setImageResource(forecast.getConditionImageID());
         highLow.setText(forecast.getHighLow());
         date.setText(forecast.getDate());
     }

@@ -66,7 +66,7 @@ public class Forecast {
         return "test";
     }
 
-    public int getCondition() {
+    public int getConditionImageID() {
         return 0;
     }
 

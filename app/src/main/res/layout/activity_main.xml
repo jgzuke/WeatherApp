@@ -11,11 +11,40 @@
         android:layout_height="60dp"
         android:orientation="horizontal">
 
+        <venmo.jgzuke.weatherapp.DayTopBadge
+            android:id="@+id/day_1"
+            android:layout_width="0"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <venmo.jgzuke.weatherapp.DayTopBadge
+            android:id="@+id/day_2"
+            android:layout_width="0"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <venmo.jgzuke.weatherapp.DayTopBadge
+            android:id="@+id/day_3"
+            android:layout_width="0"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <venmo.jgzuke.weatherapp.DayTopBadge
+            android:id="@+id/day_4"
+            android:layout_width="0"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <venmo.jgzuke.weatherapp.DayTopBadge
+            android:id="@+id/day_5"
+            android:layout_width="0"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
     </LinearLayout>
 
     <fragment
         android:id="@+id/fragment_container"
-        android:name="venmo.jgzuke.weatherapp.DayViewFragment"
+        android:name="venmo.jgzuke.weatherapp.DayFragment"
         tools:layout="@layout/fragment_day_view"
         android:layout_width="match_parent"
         android:layout_height="fill_parent" />
